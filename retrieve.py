@@ -1,4 +1,3 @@
-import numpy as np
-
-data = np.genfromtxt('DataSettings.csv',delimiter=',')
-print(data)
+import pandas as pd
+df = pd.read_csv('DataSettings.csv', sep=',')
+print(df)
