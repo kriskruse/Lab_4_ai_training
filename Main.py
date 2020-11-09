@@ -15,7 +15,7 @@ np.random.seed(1)
 N = 50  # Number of observations
 s = 0.02  # Noise standard deviation
 H = 5  # Hidden dimension
-T = 100000  # Number of iterations
+T = 10000  # Number of iterations
 
 # Create training set
 x_train = np.sort(np.random.rand(N) * 2 - 1)
@@ -26,8 +26,8 @@ x_test = np.sort(np.random.rand(N) * 2 - 1)
 y_test = weird_fun(x_test) + s * np.random.randn(N)
 
 # Plot training data
-plt.plot(x_train, y_train, '.');
-plt.show()
+# plt.plot(x_train, y_train, '.');
+# plt.show()
 
 
 
@@ -88,17 +88,17 @@ for t in range(T):
     # parameters
     optimizer.step()
 
-plt.plot(Loss)
-plt.grid(True);
-plt.show()
+# plt.plot(Loss)
+# plt.grid(True);
+# plt.show()
 
 
 # Plot training data and fit
-plt.subplot(121)
-plt.plot(x_train, y_train, 'g.');
-plt.plot(x_train, y_pred.cpu().detach().numpy(), 'r.')
+# plt.subplot(121)
+# plt.plot(x_train, y_train, 'g.');
+# plt.plot(x_train, y_pred.cpu().detach().numpy(), 'r.')
 train_error = loss_fn(y_pred, y).item()
-plt.title('Training error: {:.2f}'.format(train_error))
+# plt.title('Training error: {:.2f}'.format(train_error))
 # Plot test data and fit
 x_t = torch.tensor(np.expand_dims(x_test, 1), dtype=torch.float32, device=device)
 y_t = torch.tensor(np.expand_dims(y_test, 1), dtype=torch.float32, device=device)
@@ -106,12 +106,16 @@ y_t_pred = model(x_t)
 x_all = np.linspace(-1, 1, 1000)
 x_all_t = torch.tensor(np.expand_dims(x_all, 1), dtype=torch.float32, device=device)
 y_all_t = model(x_all_t)
-plt.subplot(122)
-plt.plot(x_all, y_all_t.cpu().detach().numpy(), 'r-');
-plt.plot(x_test, y_t_pred.cpu().detach().numpy(), 'r.')
-plt.plot(x_test, y_test, 'b.');
+# plt.subplot(122)
+# plt.plot(x_all, y_all_t.cpu().detach().numpy(), 'r-');
+# plt.plot(x_test, y_t_pred.cpu().detach().numpy(), 'r.')
+# plt.plot(x_test, y_test, 'b.');
 test_error = loss_fn(y_t_pred, y_t).item()
-plt.title('Test error: {:.2f}'.format(test_error));
 
-# Viser plottet
-plt.show()
+print(f"The train error is: {train_error}")
+print(f"THe test error is:  {test_error}")
+
+# plt.title('Test error: {:.2f}'.format(test_error));
+#
+# # Viser plottet
+# plt.show()
