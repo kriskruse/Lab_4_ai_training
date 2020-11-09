@@ -221,7 +221,7 @@ def define_model(L,H):
 
 	return model
 
-with open('DatSettings.csv','a',newline="") as csvfile:
+with open('DataSettings.csv','a',newline="") as csvfile:
 	writer = csv.writer(csvfile, delimiter=',')
 
 
