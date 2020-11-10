@@ -3,6 +3,7 @@ import numpy as np
 # import matplotlib.pyplot as plt
 import csv
 
+
 # print("""This is the bruteforcing argument test by
 # Marcus
 # Kris
@@ -221,25 +222,25 @@ def define_model(L, H):
     return model
 
 
-#with open('DataSettings.csv', 'a', newline="") as csvfile:
- #   writer = csv.writer(csvfile, delimiter=',')
+# with open('DataSettings.csv', 'a', newline="") as csvfile:
+#   writer = csv.writer(csvfile, delimiter=',')
 
 print("H,L,T,A[0],A[1]")
-    # Layers
+# Layers
 
-    # print(f"Starting learning with Layer {l}")
+# print(f"Starting learning with Layer {l}")
 
-    # Iterations
+# Iterations
 
 
 # Hidden dimension
-for l in range(1, L):
+for l in range(2, L):
     for h in range(1, H):
         model = define_model(l, h)
 
         a = train_network(T, model)
         print(f"{h},{l},{T},{a[0]},{a[1]}")
-        #writer.writerow([h, l, t, a[0], a[1]])
+        # writer.writerow([h, l, t, a[0], a[1]])
     #     print(f"Done with {t} Iterations")
     # print(f"Done with Layer {l}")
 
