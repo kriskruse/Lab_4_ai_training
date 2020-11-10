@@ -1,15 +1,15 @@
 import torch
 import numpy as np
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import csv
 
-print("""This is the bruteforcing argument test by
-Marcus 
-Kris
-Casper
-
-Starting script
-""")
+# print("""This is the bruteforcing argument test by
+# Marcus
+# Kris
+# Casper
+#
+# Starting script
+# """)
 
 def weird_fun(x):
     return np.sin(1 / x)
@@ -33,11 +33,11 @@ y = torch.tensor(np.expand_dims(y_train, 1), dtype=torch.float32, device=device)
 
 loss_fn = torch.nn.MSELoss(reduction='sum')
 
-print("Random training data set generated")
+# print("Random training data set generated")
 
-H = [1, 10, 100, 1000, 10000]  # Max Hidden dimension
-L = 10  # Lag
-T = [10, 100, 1000, 10000]  # Number of iterations
+H = 1000  # Max Hidden dimension
+L = 3  # Lag
+T = 10000  # Number of iterations
 
 
 def train_network(T, model):
@@ -221,24 +221,26 @@ def define_model(L, H):
     return model
 
 
-with open('DataSettings.csv', 'a', newline="") as csvfile:
-    writer = csv.writer(csvfile, delimiter=',')
+#with open('DataSettings.csv', 'a', newline="") as csvfile:
+ #   writer = csv.writer(csvfile, delimiter=',')
 
+print("H,L,T,A[0],A[1]")
     # Layers
-    for l in range(1, L):
-        print(f"Starting learning with Layer {l}")
 
-        # Iterations
-        for t in T:
+    # print(f"Starting learning with Layer {l}")
 
-            # Hidden dimension
-            for h in H:
-                model = define_model(l, h)
+    # Iterations
 
-                a = train_network(t, model)
-                # print("l:{}  t:{}   h:{}  --- Error:{}".format(l,t,h,a))
-                writer.writerow([h, l, t, a[0], a[1]])
-            print(f"Done with {t} Iterations")
-        print(f"Done with Layer {l}")
+
+# Hidden dimension
+for l in range(1, L):
+    for h in range(1, H):
+        model = define_model(l, h)
+
+        a = train_network(T, model)
+        print(f"{h},{l},{T},{a[0]},{a[1]}")
+        #writer.writerow([h, l, t, a[0], a[1]])
+    #     print(f"Done with {t} Iterations")
+    # print(f"Done with Layer {l}")
 
 # network(1, 100)
