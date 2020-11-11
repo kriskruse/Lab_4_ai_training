@@ -36,7 +36,7 @@ loss_fn = torch.nn.MSELoss(reduction='sum')
 
 # print("Random training data set generated")
 
-sH = 483 # start at H = x
+sH = 1 # start at H = x
 
 H = 1000  # Max Hidden dimension
 L = 3  # Lag
@@ -236,16 +236,15 @@ print("H,L,T,A[0],A[1]")
 
 
 # Hidden dimension
-for l in range(2, L):
-    if l > 2:
-        sH = 1
-    for h in range(sH, H):
-        model = define_model(l, h)
 
-        a = train_network(T, model)
-        print(f"{h},{l},{T},{a[0]},{a[1]}")
-        # writer.writerow([h, l, t, a[0], a[1]])
-    #     print(f"Done with {t} Iterations")
-    # print(f"Done with Layer {l}")
+
+for h in range(sH, H):
+    model = define_model(L, h)
+
+    a = train_network(T, model)
+    print(f"{h},{L},{T},{a[0]},{a[1]}")
+    # writer.writerow([h, l, t, a[0], a[1]])
+#     print(f"Done with {t} Iterations")
+# print(f"Done with Layer {l}")
 
 # network(1, 100)
